@@ -8,14 +8,15 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body style="background-color: aquamarine;" >
+    @Html.AntiForgeryToken()
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:red;">
-        <div class="container">
-            <div class="navbar-header" style="">
+        <div class="container" style="display:flex; justify-content:space-evenly">
+            <div class="navbar-header">
                 @Html.ActionLink("InForno", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">  
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Login", "Login", "Login", new { area = "" }, null)</li>
                 </ul>
             </div>
         </div>
@@ -25,6 +26,7 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <a>@Html.ActionLink("Area Riservata", "Index", "")</a>
         </footer>
     </div>
 
