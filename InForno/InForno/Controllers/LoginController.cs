@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InForno.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,34 +9,31 @@ namespace InForno.Controllers
 {
     public class LoginController : Controller
     {
+        ModelDbContext context = new ModelDbContext();
         // GET: Login
         public ActionResult Login()
         {
             return View();
         }
-
-
-
-        // GET: Login/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Login/Create
+        // Post: Login
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Login(UtentiTab utente) 
         {
-            try
+            try { 
+                if(utente)
+                if(ModelState.IsValid) 
+                { 
+                context.UtentiTab.Add(utente);
+                }
+            }catch(Exception ex)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                alert(ex.ToString());
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index", "Home");
+        }
+        private void alert(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

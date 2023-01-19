@@ -24,13 +24,13 @@ namespace InForno.Models
         [Required]
         public string Password { get; set; }
 
-        [Required]
+        
         public string Nome { get; set; }
 
-        [Required]
+        
         public string Cognome { get; set; }
 
-        [Required]
+       
         public string Indirizzo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

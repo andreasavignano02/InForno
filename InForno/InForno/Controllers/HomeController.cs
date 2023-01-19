@@ -16,6 +16,7 @@ namespace InForno.Controllers
             List<ListaPizze> lista = Context.ListaPizze.ToList();
             return View(lista);
         }
+        [Authorize]
         public ActionResult Details(int id)
         {
                 return View(Context.ListaPizze.Find(id));         
