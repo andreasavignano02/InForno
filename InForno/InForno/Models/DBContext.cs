@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace InForno.Controllers
+namespace InForno.Models
 {
-    public partial class DBContext : DBContext
+    public partial class DBContext : DbContext
     {
         public DBContext()
-            : base("name=DbContext")
+            : base("name=DBContext")
         {
         }
 

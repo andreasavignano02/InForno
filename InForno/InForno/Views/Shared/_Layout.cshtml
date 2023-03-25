@@ -1,39 +1,82 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div style="height: 100vh;" id="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+            <div class="container-fluid my-3">
+                <div class="ms-3" style="width:200px; display: inline-block;"><a class="navbar-brand" href="#"><img src="~/Content/Assets/logo.png" style="width: 200px;" /></a></div>
+
+                <button class="navbar-toggler btn btn-default border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="text-white">Menu</span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0 align-items-center ms-auto" id="navbarUl">
+                        <li class="nav-item">
+                            <a class="nav-link fs-5 text-white" aria-current="page" href="@Url.Action("Index","Home")">
+                                <i class="fa-solid fa-pizza-slice me-1"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="@Url.Action("Logout","Users")" class="btn btn-danger text-white fs-5"> <i class="fa-solid fa-user me-1"></i>Log Out</a>
+                                if (User.IsInRole("admin"))
+                                {
+                                    <a href="@Url.Action("Index","Users")" class="btn btn-warning text-dark fs-5">Gestisci Utenti</a>
+                                }
+
+                                if (User.IsInRole("user"))
+                                {
+                                    if (PizzaOrderApp.Models.ProdForOrder.ProdList.Count() != 0)
+                                    {
+                                        <a href="@Url.Action("Cart","ProdForOrders")" class="btn btn-warning text-dark fs-5"><i class="fa-solid fa-cart-shopping"></i></a>
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login", "Users")" class="btn btn-danger text-white fs-5"> <i class="fa-solid fa-user me-1"></i>Accedi</a>
+                            }
+
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+
+        <div id="bgimgDiv">
+            <div id="bgcolorDiv" class="py-5">
+                <div class="container body-content text-light" style="z-index: 10;">
+
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="d-flex align-items-center">
+
+            <img src="~/Content/Assets/noBG-darkTheme.png" style="width: 80px;" />
+            <p class="text-light pt-2">&copy; @DateTime.Now.Year - Roberto Dabbicco</p>
+            @Html.ActionLink("Admin Section", "IndexAdmin", "Products", null, new { @class = "btn text-light fw-bolder fs-5 mb-3 ms-auto me-5" })
+        </footer>
+    </div>
 </body>
 </html>

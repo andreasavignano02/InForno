@@ -1,4 +1,4 @@
-namespace InForno.Controllers
+namespace InForno.Models
 {
     using System;
     using System.Collections.Generic;
