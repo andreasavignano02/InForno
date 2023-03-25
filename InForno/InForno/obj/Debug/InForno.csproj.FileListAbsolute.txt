@@ -1,0 +1,2 @@
+C:\Users\and\OneDrive\Desktop\esercizi in generale\InForno\InForno\InForno\InForno\obj\Debug\InForno.csproj.AssemblyReference.cache
+C:\Users\and\OneDrive\Desktop\esercizi in generale\InForno\InForno\InForno\InForno\obj\Debug\InForno.csproj.CoreCompileInputs.cache
